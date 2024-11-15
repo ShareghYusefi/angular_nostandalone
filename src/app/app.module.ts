@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HouseComponent } from './house/house.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  // list of components, directives, and pipes that belong to this module
+  declarations: [AppComponent, HouseComponent],
+  // list of modules that are imported into this module
+  imports: [BrowserModule, AppRoutingModule],
+  // list of services that are provided by this module
   providers: [],
-  bootstrap: [AppComponent]
+  // the root component that Angular creates and inserts into the index.html
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
