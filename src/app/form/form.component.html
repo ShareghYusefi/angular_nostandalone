@@ -1,11 +1,22 @@
-<form>
+<!-- Template Driven forms use directives (ngModel, ngForm) to bind the form elements to the template reference of our input tags. -->
+<!-- The ngModel directive is used to bind the form elements to the template reference of our input tags. -->
+<!-- ngModel requires a name attribute to be set on the input tag. -->
+
+<!-- We can use ngForm to create a FormGroup object that can be used to track the value and validity state of the form. -->
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+  {{ loginForm.value | json }}
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
+    <!-- We can register FormControls into the FormGroup object by using ngModel directive along with name attribute. -->
+    <!-- We can also use two way data binding to bind the value of the input field to the component class property. -->
     <input
+      #emailRef
+      name="email"
       type="email"
       class="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
+      [(ngModel)]="email"
     />
     <div id="emailHelp" class="form-text">
       We'll never share your email with anyone else.
@@ -13,11 +24,24 @@
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" />
+    <input
+      #passwordRef
+      name="password"
+      type="password"
+      class="form-control"
+      id="exampleInputPassword1"
+      [(ngModel)]="password"
+    />
   </div>
   <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    <input
+      name="subscribe"
+      type="checkbox"
+      class="form-check-input"
+      id="exampleCheck1"
+      [(ngModel)]="subscribe"
+    />
+    <label class="form-check-label" for="exampleCheck1">Remember me</label>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -5,12 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HouseComponent } from './house/house.component';
 import { FormComponent } from './form/form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   // list of components, directives, and pipes that belong to this module
   declarations: [AppComponent, HouseComponent, FormComponent],
   // list of modules that are imported into this module
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
   // list of services that are provided by this module
   providers: [],
   // the root component that Angular creates and inserts into the index.html
