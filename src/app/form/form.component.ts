@@ -10,9 +10,7 @@ export class FormComponent {
   password: string = '';
   subscribe: boolean = false;
 
-  onSubmit(): void {
-    console.log(this.email);
-    console.log(this.password);
-    console.log(this.subscribe);
+  onSubmit(loginForm: any): void {
+    console.log(loginForm.value);
   }
 }

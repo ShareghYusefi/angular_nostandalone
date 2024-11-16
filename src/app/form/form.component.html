@@ -3,7 +3,7 @@
 <!-- ngModel requires a name attribute to be set on the input tag. -->
 
 <!-- We can use ngForm to create a FormGroup object that can be used to track the value and validity state of the form. -->
-<form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
   {{ loginForm.value | json }}
   <div class="mb-3">
     <label for="exampleInputEmail1" class="form-label">Email address</label>
