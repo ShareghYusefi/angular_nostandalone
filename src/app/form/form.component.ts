@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './form.component.css',
 })
 export class FormComponent {
+  
   email: string = '';
   password: string = '';
   subscribe: boolean = false;

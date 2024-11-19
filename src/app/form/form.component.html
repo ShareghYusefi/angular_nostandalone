@@ -9,30 +9,67 @@
     <label for="exampleInputEmail1" class="form-label">Email address</label>
     <!-- We can register FormControls into the FormGroup object by using ngModel directive along with name attribute. -->
     <!-- We can also use two way data binding to bind the value of the input field to the component class property. -->
+    <!-- We need to assign ngModel to a template reference variable to access the FormControl instance. -->
+    <!-- We can use the form control instance to check the validity of the form control. -->
     <input
-      #emailRef
+      #emailRef="ngModel"
       name="email"
       type="email"
       class="form-control"
       id="exampleInputEmail1"
       aria-describedby="emailHelp"
       [(ngModel)]="email"
+      maxlength="50"
+      minlength="5"
+      required
     />
     <div id="emailHelp" class="form-text">
       We'll never share your email with anyone else.
+    </div>
+    <!-- Touched means the user has focused on the input field and then moved away from it. -->
+    <!-- We can use the invalid property to check if the form control is valid or not. -->
+    <div *ngIf="emailRef.invalid && emailRef.touched" class="text-danger">
+      <div *ngIf="emailRef.errors">
+        <!-- Validation for required -->
+        <div *ngIf="emailRef.errors['required']">Email is required</div>
+        <!-- Validation for email -->
+        <div *ngIf="emailRef.errors['email']">Email is invalid</div>
+        <!-- minLength & maxLength -->
+        <div *ngIf="emailRef.errors['minlength']">Minimum 5 characters</div>
+        <div *ngIf="emailRef.errors['maxlength']">Maximum 50 characters</div>
+      </div>
     </div>
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input
-      #passwordRef
+      #passwordRef="ngModel"
       name="password"
       type="password"
       class="form-control"
       id="exampleInputPassword1"
       [(ngModel)]="password"
+      maxlength="50"
+      minlength="5"
+      required
     />
   </div>
+  <!-- ? is known as the safe navigation operator. -->
+  <!-- It is used to prevent errors when we try to access a property of an object that is null or undefined. -->
+  <div *ngIf="passwordRef.invalid && passwordRef.touched" class="text-danger">
+    <div *ngIf="passwordRef.errors">
+      <!-- Validation for required -->
+      <div *ngIf="passwordRef.errors['required']">Password is required</div>
+      <!-- minLength & maxLength -->
+      <div *ngIf="passwordRef.errors['minlength']">Minimum 5 characters</div>
+      <div *ngIf="passwordRef.errors['maxlength']">Maximum 50 characters</div>
+      <!-- Regex Validation -->
+      <div *ngIf="passwordRef.errors['pattern']">
+        Password should contain only letters and numbers
+      </div>
+    </div>
+  </div>
+
   <div class="mb-3 form-check">
     <input
       name="subscribe"
@@ -41,7 +78,10 @@
       id="exampleCheck1"
       [(ngModel)]="subscribe"
     />
+
     <label class="form-check-label" for="exampleCheck1">Remember me</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">
+    Submit
+  </button>
 </form>
