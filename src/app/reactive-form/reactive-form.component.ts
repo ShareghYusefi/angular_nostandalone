@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'reactive-form',
@@ -8,9 +8,18 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class ReactiveFormComponent {
   // Create a FormGroup instance to bind form to.
-  signInForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl(''),
-    subscribe: new FormControl(false),
-  });
+  signInForm: FormGroup;
+
+  // initialize form in contructor
+  constructor(private formBuilderInstance: FormBuilder) {
+    this.signInForm = formBuilderInstance.group({
+      email: '',
+      password: '',
+      subscribe: false,
+    });
+  }
+
+  onSubmit() {
+    console.log(this.signInForm.value);
+  }
 }
