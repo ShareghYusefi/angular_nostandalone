@@ -14,6 +14,11 @@ const routes: Routes = [
     path: 'reactive-form',
     component: ReactiveFormComponent,
   },
+  // reactive form with an email address parameter
+  {
+    path: 'reactive-form/:email',
+    component: ReactiveFormComponent,
+  },
   // default route
   {
     path: '',

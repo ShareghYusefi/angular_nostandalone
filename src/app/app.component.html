@@ -5,6 +5,11 @@
   <div class="nav-item">
     <a routerLink="/reactive-form" class="nav-link">Reactive Form</a>
   </div>
+  <div class="nav-item">
+    <a [routerLink]="['/reactive-form', 'yusefi@robo.ca']" class="nav-link"
+      >Reactive Form With Parameter</a
+    >
+  </div>
 </div>
 <!-- route routlet loads in components for the routes -->
 <router-outlet />
