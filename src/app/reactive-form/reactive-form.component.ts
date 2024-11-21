@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { avoidWordValidator } from '../customValidation';
 
 @Component({
   selector: 'reactive-form',
@@ -13,10 +19,24 @@ export class ReactiveFormComponent {
   // initialize form in contructor
   constructor(private formBuilderInstance: FormBuilder) {
     this.signInForm = formBuilderInstance.group({
-      email: '',
-      password: '',
+      email: [
+        '',
+        [Validators.required, Validators.email, Validators.minLength(5)],
+      ],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(5), avoidWordValidator],
+      ],
       subscribe: false,
     });
+  }
+
+  get email() {
+    return this.signInForm.get('email');
+  }
+
+  get password() {
+    return this.signInForm.get('password');
   }
 
   onSubmit() {
